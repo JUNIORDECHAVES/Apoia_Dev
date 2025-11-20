@@ -27,7 +27,6 @@ export function Name({ initialName }: { initialName: string }) {
                     toast.success('Nome atualizado com sucesso!');
                     
                 } catch (error) {
-                    console.log(error);
                     setName(originalName);
                 }
             }

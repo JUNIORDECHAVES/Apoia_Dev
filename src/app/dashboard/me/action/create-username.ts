@@ -23,7 +23,6 @@ export async function createUsername(data: createUsernameFormData) {
 
     const schema = createUsernameSchema.safeParse(data);
     if(!schema.success) {
-        console.log(schema);
         return {
             data: null,
             error : schema.error.issues[0].message
@@ -34,7 +33,6 @@ export async function createUsername(data: createUsernameFormData) {
         const userId = session.user.id;
 
         const slug = createSlug(data.username);
-        console.log(slug)
 
         const existingUsername = await prisma.user.findFirst({
             where: {

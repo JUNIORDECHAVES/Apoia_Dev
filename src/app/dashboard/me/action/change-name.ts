@@ -43,7 +43,6 @@ export async function changeName(data: ChangeNameSchema) {
         }
 
     } catch (error) {
-        console.log(error);
         return {
             data: null,
             error: 'Erro ao atualizar o nome'

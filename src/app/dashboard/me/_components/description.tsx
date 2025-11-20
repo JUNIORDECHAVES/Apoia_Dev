@@ -27,7 +27,6 @@ export function Description({ initialDescription }: { initialDescription: string
                     toast.success('Sua Biografia foi atualizada com sucesso!');
                     
                 } catch (error) {
-                    console.log(error);
                     setDescription(originalDescription);
                 }
             }

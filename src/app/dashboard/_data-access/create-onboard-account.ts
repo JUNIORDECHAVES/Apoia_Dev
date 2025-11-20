@@ -16,7 +16,6 @@ export async function GetLoginOnboardAccount(accontId: string | undefined) {
         return accountLink.url;
 
     } catch (error) {
-        console.log("Erro ao criar conta de criador:", error    );
         return null;
     }
 

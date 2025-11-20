@@ -42,7 +42,6 @@ export async function changeBio(data: ChangeBioSchema) {
         }
 
     } catch (error) {
-        console.log(error);
         return {
             data: null,
             error: 'Erro ao atualizar a Biografia'

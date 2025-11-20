@@ -14,8 +14,6 @@ export async function POST(req: NextRequest) {
         const playload = await req.text();
         event = Stripe.webhooks.constructEvent(playload, sig, endpointSecret);
     } catch (error) {
-        console.log('Error message: ', (error as Error).message);
-        
         return new NextResponse(`Webhook Error: ${(error as Error).message}`, {status: 400});
     }
 
@@ -25,8 +23,6 @@ export async function POST(req: NextRequest) {
             const paymentIntentId = session.payment_intent as string;
 
             const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId)
-            console.log('=> PaymentIntent:', paymentIntent);
-
 
             const donateId = paymentIntent.metadata.donateId;
             try {
@@ -36,14 +32,14 @@ export async function POST(req: NextRequest) {
                         status: 'PAID'
                     }
                 });
-
-                console.log(`Status da doação ${updateDonate.id} atualizado para ${updateDonate.status}`);
             } catch (error) {
-                console.log(`## error ${error}`);
+                return new NextResponse(`Webhook Error: ${(error as Error).message}`, {status: 400});
             }
             break;
 
-            default: console.log(`evento não tratado ${event.type}`);
+            default: return{
+                eventError: `evento não tratado ${event.type}`
+            };
             
     }
 
